@@ -8,6 +8,6 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "hadouken-js-adapter": "^0.42.1"
+    "hadouken-js-adapter": "^0.42.2"
   }
 }
