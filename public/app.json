@@ -1,0 +1,1 @@
+{"devtools_port":9090,"startup_app":{"name":"openfin-crash-test","url":"http://localhost:5555/index.html","uuid":"openfin-crash-test","autoShow":true,"saveWindowState":true},"runtime":{"arguments":"--v=1 --enable-crash-reporting --no-sandbox","version":"13.76.45.12"}}

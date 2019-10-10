@@ -13,24 +13,30 @@ args.forEach((arg, idx) => {
     }
 });
 
-const config = {
-    devtools_port: 9090,
-    startup_app: {
-        name: 'openfin-crash-test',
-        url: 'http://localhost:5555/index.html',
-        uuid: 'openfin-crash-test',
-        autoShow: true,
-        saveWindowState: true
-    },
-    runtime: {
-        arguments: '--v=1 --enable-crash-reporting --no-sandbox',
-        version
-    }
-};
+if (version) {
+    const config = {
+        devtools_port: 9090,
+        startup_app: {
+            name: 'openfin-crash-test',
+            url: 'http://localhost:5555/index.html',
+            uuid: 'openfin-crash-test',
+            autoShow: true,
+            saveWindowState: true
+        },
+        runtime: {
+            arguments: '--v=1 --enable-crash-reporting --no-sandbox',
+            version
+        }
+    };
 
-const jsonConfig = JSON.stringify(config);
+    const jsonConfig = JSON.stringify(config);
 
-fs.writeFileSync('./public/app.json', jsonConfig);
+    fs.writeFileSync('./public/app.json', jsonConfig);
+} else {
+    console.error('Please specify a version: \n    node server.js --version 12.69.43.21');
+    process.exit();
+}
+
 
 const serverParams = {
     root: path.resolve('public'),
@@ -41,6 +47,7 @@ const serverParams = {
 
 //To Launch the OpenFin Application we need a manifestUrl.
 const manifestUrl = `http://localhost:${serverParams.port}/app.json`;
+
 
 //Start the server server
 liveServer.start(serverParams).on('listening', async () => {
